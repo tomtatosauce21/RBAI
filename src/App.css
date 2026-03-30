@@ -20,3 +20,80 @@
   transform: translateY(-8px);
 }
 
+/* Form Animations */
+input, textarea {
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Button Animations */
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Scroll Animation Classes (Tailwind animate-in compatible) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease;
+}
+
+.animate-in.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+.animate-in.slide-in-from-top-2 {
+  animation: slideInFromTop 0.3s ease;
+}
+
+.animate-in.slide-in-from-bottom-4 {
+  animation: slideInFromBottom 0.4s ease;
+}
+
+/* Card Hover Effects */
+article:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+

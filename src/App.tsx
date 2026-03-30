@@ -3,7 +3,7 @@ import heroDp from './assets/hero.png'
 import Yves from './assets/Yves.jpg'
 import Shine from './assets/Shine.jpg'
 import coding from './assets/coding.jpg'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 type FunctionalityIcon = 'monitoring' | 'orchestration' | 'support' | 'ces'
@@ -12,6 +12,7 @@ type FunctionalityItem = {
   title: string
   description: string
   icon: FunctionalityIcon
+  details: string
 }
 
 const functionalities: FunctionalityItem[] = [
@@ -19,24 +20,28 @@ const functionalities: FunctionalityItem[] = [
     title: 'Behavior-Driven Monitoring',
     description:
       'Captures fine-grained telemetry to model cognitive engagement and identify potential learning blocks in real-time.',
+    details: 'Advanced analytics track student interactions, code quality changes, and problem-solving patterns to provide actionable insights for educators.',
     icon: 'monitoring',
   },
   {
     title: 'Context-Aware AI Orchestration',
     description:
       "Tailors responses to the student's actual working condition using deep code state analysis and behavioral historical data.",
+    details: 'Machine learning models analyze code structure, student history, and learning patterns to deliver personalized assistance at the right moment.',
     icon: 'orchestration',
   },
   {
     title: 'Interactive AI Assistance',
     description:
       'Acts as a Socratic tutor with hints and reflective prompts that guide discovery instead of providing direct code solutions.',
+    details: 'Rather than giving answers, the AI asks guiding questions that help students develop critical thinking and problem-solving skills.',
     icon: 'support',
   },
   {
     title: 'Cognitive Engagement Score (CES)',
     description:
       'Provides integrity-aware insights for instructors based on subtle behavioral signals and learning trajectory.',
+    details: 'Combines behavioral data with learning metrics to give educators a comprehensive view of student engagement without compromising academic integrity.',
     icon: 'ces',
   },
 ]
@@ -80,13 +85,44 @@ function renderFunctionalityIcon(icon: FunctionalityIcon) {
 
 function App() {
   const [selectedMember, setSelectedMember] = useState<number | null>(null);
+  const [expandedArchitecture, setExpandedArchitecture] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  
   const team = [
-    { name: 'Lily Ann Dela Cruz, MSIT', role: 'Adviser', type: 'adviser', img: Yves },
-    { name: 'Allan Khester Mesa', role: 'Leader', type: 'leader', img: heroDp },
-    { name: 'Yves Alcantara', role: 'Member', type: 'member', img: heroDp },
-    { name: 'Kennroe Basseg', role: 'Member', type: 'member', img: heroDp },
-    { name: 'Shine Telan', role: 'Member', type: 'member', img: Shine },
+    { name: 'Lily Ann Dela Cruz, MSIT', role: 'Adviser', type: 'adviser', bio: 'Expert in AI education and student learning outcomes', img: Yves },
+    { name: 'Allan Khester Mesa', role: 'Leader', type: 'leader', bio: 'Leads the vision and technical strategy of RBAI', img: heroDp },
+    { name: 'Yves Alcantara', role: 'Member', type: 'member', bio: 'Specializes in AI orchestration and system design', img: heroDp },
+    { name: 'Kennroe Basseg', role: 'Member', type: 'member', bio: 'Focuses on behavioral monitoring and analytics', img: heroDp },
+    { name: 'Shine Telan', role: 'Member', type: 'member', bio: 'Develops cognitive engagement scoring systems', img: Shine },
   ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.name && formData.email && formData.message) {
+      setFormSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormSubmitted(false), 4000);
+    }
+  };
   return (
     <main className="relative min-h-screen overflow-x-hidden text-sm text-white">
       <Topbar />
@@ -110,7 +146,7 @@ function App() {
           </button>
         </div>
         <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
-          <div className="group rounded-none border border-zinc-900 bg-zinc-900/50 p-2 x-shadow-2xl mr-20 mt-30 max-w-[470px] w-full">
+          <div className="group rounded-none border border-zinc-900 bg-zinc-900/50 p-2 x-shadow-2xl mr-5 mt-30 max-w-[470px] w-full">
             <img
               src={coding}
               alt="Coding"
@@ -134,7 +170,8 @@ function App() {
             {functionalities.map((item) => (
               <article
                 key={item.title}
-                className="group min-h-[360px] rounded-sm border border-zinc-800 bg-black px-8 pb-8 pt-9 transition duration-200 hover:border-zinc-200/50 hover:bg-zinc-900/80"
+                onClick={() => setExpandedArchitecture(expandedArchitecture === item.title ? null : item.title)}
+                className={`group min-h-[360px] rounded-sm border border-zinc-800 bg-black px-8 pb-8 pt-9 transition duration-200 hover:border-zinc-200/50 hover:bg-zinc-900/80 cursor-pointer ${expandedArchitecture === item.title ? 'ring-2 ring-white/30' : ''}`}
                 style={{ backgroundColor: '#191a1a' }}
               >
                 <div className="mb-10 inline-flex h-15 w-15 items-center justify-center border border-zinc-800 bg-zinc-900 text-zinc-100 transition-colors duration-300 group-hover:bg-[#c6c6c7] group-hover:text-zinc-900 group-hover:border-[#c6c6c7]">
@@ -142,6 +179,11 @@ function App() {
                 </div>
                 <h3 className="mb-5 selected team-card text-[1.30rem] font-semibold leading-tight text-zinc-100  ">{item.title}</h3>
                 <p className="text-[0.950rem] leading-relaxed text-zinc-300">{item.description}</p>
+                {expandedArchitecture === item.title && (
+                  <div className="mt-6 pt-6 border-t border-zinc-700 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <p className="text-[0.900rem] leading-relaxed text-zinc-400">{item.details}</p>
+                  </div>
+                )}
               </article>
             ))}
           </div>
@@ -199,19 +241,25 @@ function App() {
           Meet our Team
         </p>
 
-
         <div className="relative z-10 max-w-[1300px] mx-auto w-full px-10 sm:px-6 md:px-8 flex-1 flex flex-col justify-center items-center mt-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-7 lg:gap-16 justify-center w-full">
             {team.map((person, index) => (
-              <div
-                key={index}
-                onClick={() => setSelectedMember(selectedMember === index ? null : index)}
-                className={`team-card flex flex-col items-center transition-all duration-300 hover:-translate-y-2 cursor-pointer ${selectedMember === index ? 'selected' : ''}`}
-              >
-                <div className="w-[200px] h-[200px] overflow-hidden rounded-full mb-6 bg-gray-100 border-4 border-white shadow-sm ">
-                  <img src={person.img} alt={person.name} className="team-img w-full h-full object-cover" />
+              <div key={index} className="flex flex-col items-center">
+                <div
+                  onClick={() => setSelectedMember(selectedMember === index ? null : index)}
+                  className={`team-card flex flex-col items-center transition-all duration-300 hover:-translate-y-2 cursor-pointer ${selectedMember === index ? 'selected' : ''}`}
+                >
+                  <div className="w-[200px] h-[200px] overflow-hidden rounded-full mb-6 bg-gray-100 border-4 transition-all duration-300 shadow-sm" style={{ borderColor: selectedMember === index ? '#ffffff' : '#ffffff' }}>
+                    <img src={person.img} alt={person.name} className="team-img w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white text-center">{person.name}</h3>
+                  <p className="text-sm text-zinc-400 mt-1">{person.role}</p>
                 </div>
-                <h3 className="text-xl font-bold text-white text-center" style={{ marginTop: '20px' }}>{person.name}</h3>
+                {selectedMember === index && (
+                  <div className="mt-4 p-4 bg-zinc-900/50 rounded border border-zinc-700 text-center max-w-xs animate-in fade-in slide-in-from-top-2 duration-300">
+                    <p className="text-sm text-zinc-300">{person.bio}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -231,6 +279,7 @@ function App() {
           
           </div>
         </section>
+
 
       <footer className="w-full bg-black border-t border-zinc-800 py-18 px-18 sm:px-6 md:px-10">
         <div className="max-w-6xl mx-auto">
@@ -255,6 +304,17 @@ function App() {
         </div>
       </footer>
 
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-40 p-3 bg-white text-black rounded-full hover:bg-zinc-300 transition duration-300 animate-in fade-in slide-in-from-bottom-4"
+          aria-label="Scroll to top"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      )}
     </main>
 
   )
