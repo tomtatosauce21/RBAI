@@ -83,7 +83,7 @@ function App() {
   const team = [
     { name: 'Lily Ann Dela Cruz, MSIT', role: 'Adviser', type: 'adviser', img: Yves },
     { name: 'Allan Khester Mesa', role: 'Leader', type: 'leader', img: heroDp },
-    { name: 'Yves Alcantara', role: 'Member', type: 'member', img: heroDp },
+    { name: 'Yves Alcantara Test', role: 'Member', type: 'member', img: heroDp },
     { name: 'Kennroe Basseg', role: 'Member', type: 'member', img: heroDp },
     { name: 'Shine Telan', role: 'Member', type: 'member', img: Shine },
   ]
