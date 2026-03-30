@@ -2,6 +2,7 @@ import Topbar from './components/Topbar.tsx'
 import admin_dp from './assets/admin_dp.png'
 import stud_dp from './assets/stud_dp.png'
 import coding from './assets/coding.jpg'
+import qoute from './assets/qoute.png'
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -124,7 +125,7 @@ function App() {
           <p className="max-w-2xl text-base leading-relaxed tracking-[0.02em] text-gray-300 sm:text-lg lg:text-xl">
             We are revolutionizing programming education by teaching students how to think through complexity using code as their medium, rather than just how to write code.
           </p>
-            <button className="mt-5 !bg-white !text-black border border-white px-8 py-3 text-sm font-medium transition duration-300 hover:!bg-zinc-800/20 hover:!text-white sm:px-10">
+            <button className="mt-5 mb-43 !bg-white !text-black border border-white px-8 py-3 text-sm font-medium transition duration-300 hover:!bg-zinc-800/20 hover:!text-white sm:px-10">
               Get Started
           </button>
         </div>
@@ -149,7 +150,7 @@ function App() {
           <h2 className="mb-10 text-3xl font-bold leading-none tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
             Core Functionalities
           </h2>
-          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7">
+          <div className="grid w-336 grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-9 ml-[32px]">
             {functionalities.map((item) => (
               <article
                 key={item.title}
@@ -171,7 +172,7 @@ function App() {
                 role="button"
                 tabIndex={0}
                 aria-pressed={!!flippedArchitecture[item.title]}
-                className={`architecture-card group min-h-[360px] rounded-sm border border-zinc-800 bg-black transition duration-200 hover:border-zinc-200/50 cursor-pointer ${flippedArchitecture[item.title] ? 'ring-2 ring-white/30' : ''}`}
+                className={`architecture-card group min-h-[360px] min-w-[160px] rounded-sm border border-zinc-800 bg-black transition duration-200 hover:border-zinc-200/50 cursor-pointer ${flippedArchitecture[item.title] ? 'ring-2 ring-white/30' : ''}`}
                 style={{ backgroundColor: '#191a1a' }}
               >
                 <div className={`architecture-card-inner ${flippedArchitecture[item.title] ? 'is-flipped' : ''}`}>
@@ -205,7 +206,7 @@ function App() {
             About Us
           </h2>
 
-          <div className="mt-12 grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+          <div className=" ml-4 mt-12 grid w-335 grid-cols-1 gap-[0.02em] md:grid-cols-2">
             <div className="relative min-h-[360px] border border-zinc-800 bg-black p-6 transition duration-200 hover:bg-[#1f2020]/80 sm:p-10 lg:p-12">
               <span className="inline-flex h-16 w-16 items-center justify-center bg-zinc-700/70 text-zinc-100">
                 <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -267,13 +268,15 @@ function App() {
       <section id="Philosophy"
           className="flex min-h-[90vh] w-full items-center justify-center border-b border-zinc-800 bg-zinc-900 px-4 pb-10 pt-20 sm:px-6 md:px-10 lg:pt-24" style={{background: '#191a1a'}}>
           <div className="w-full max-w-3xl text-center">
-            <p className="material-symbols-outlined text-9xl text-primary/20 font-bold mbt-20">
-              "
-            </p>
+            <img
+              src={qoute}
+              alt="qoute"
+              className="mx-auto mb-4 h-14 w-14 object-contain sm:h-20 sm:w-16"
+            />
             <p className="mb-5 font-sans text-2xl font-extralight italic leading-[1.25em] text-gray-200 sm:text-3xl md:text-4xl lg:text-5xl mb-10">
               We don't teach students how to write code. We teach them how to think through complexity using code as their medium.</p>
             <div className="mx-auto mb-6 h-px w-100 bg-zinc-500/70 leading-[8.5em]" aria-hidden="true"> </div>
-           <p className="mb-10 text-xs font-family: var(--sans-serif) italic tracking-[0.35em] text-zinc-400 sm:text-sm sm:tracking-[0.16em]">
+           <p className="mb-10 text-xs font-family: var(--sans-serif) tracking-[0.35em] text-zinc-400 sm:text-sm sm:tracking-[0.16em]">
               — Our Philosophy
             </p>
           </div>
