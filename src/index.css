@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  background: black;
+}
+
+body :is(h1, h2, h3, h4, h5, h6, p, span, a, button, li, label) {
+  color: #e5e4e4 !important;
+}
