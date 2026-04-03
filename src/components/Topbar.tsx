@@ -25,7 +25,7 @@ function Topbar() {
 				<div className="flex-shrink-0">
 					<p className="text-2xl font-bold tracking-[0.01em] sm:text-2xl text-zinc-200">rbAI</p>
 				</div>
-				<ul className="ml-13 order-3 flex w-full items-center justify-center gap-x-2 gap-y-2 pb-1 sm:order-2 sm:w-auto sm:gap-x-6 lg:gap-x-8">
+				<ul className="ml-13 order-3 flex w-full items-center justify-center gap-x-2 gap-y-2 pb-1 sm:order-2 sm:w-auto sm:gap-x-6 lg:gap-x-12">
 					{navItems.map((item) => (
 						<li key={item.label}>
 							<button

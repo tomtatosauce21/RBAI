@@ -112,10 +112,10 @@ function App() {
       <Topbar />
       <section
         id="home"
-        className="flex min-h-screen w-full flex-col items-start justify-center gap-10 border-b border-zinc-800 px-4 pb-16 pt-28 sm:px-6 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:pb-24 lg:pt-32"
+        className="flex min-h-screen w-full flex-col items-start justify-center gap-10 border-b border-zinc-800 px-4 pb-16 pt-28 sm:px-6 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:pb-24 lg:pt-32"
         style={{ backgroundColor: '#191a1a' }}
       >
-        <div className="w-full max-w-3xl space-y-4 text-left sm:space-y-5 lg:ml-12 xl:ml-20">
+        <div className="w-full max-w-3xl space-y-4 text-left sm:space-y-5 lg:ml-12 xl:ml-10">
           <span className="inline-flex rounded-full border border-zinc-700 bg-zinc-800/80 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.8em] text-zinc-200 sm:px-5 sm:py-2 sm:text-[11px] sm:tracking-[0.12em]">
             The New Standard
           </span>
@@ -125,16 +125,19 @@ function App() {
           <p className="max-w-2xl text-base leading-relaxed tracking-[0.02em] text-gray-300 sm:text-lg lg:text-xl">
             We are revolutionizing programming education by teaching students how to think through complexity using code as their medium, rather than just how to write code.
           </p>
-            <button className="mt-5 mb-43 !bg-white !text-black border border-white px-8 py-3 text-sm font-medium transition duration-300 hover:!bg-zinc-800/20 hover:!text-white sm:px-10">
+            <button className="mt-5 mb-7 !bg-white !text-black border rounded-xl border-white px-8 py-3 text-sm font-medium transition duration-300 hover:!bg-zinc-800/20 hover:!text-white sm:px-10">
               Get Started
           </button>
         </div>
-        <div className="hidden w-full max-w-md flex-shrink-0 items-center justify-center lg:mr-8 lg:flex xl:mr-20 xl:max-w-lg">
-          <div className="group w-full rounded-none border border-zinc-900 bg-zinc-900/50 p-2">
+        <div className="hidden w-full max-w-md flex-shrink-0 items-center justify-center lg:mr-8 lg:flex xl:mr-20 xl:max-w-lg mb-7">
+          <div className="group min-w-[320px] rounded-xl border border-zinc-900 bg-zinc-900/50 border-t-10 p-2">
+          <span>
+              <p className="text-2xl font-bold tracking-[0.01em] sm:text-xl opacity-70 text-zinc-200 mb-3 mr-9 ">future.rbAI</p>
+          </span>
             <img
               src={coding}
               alt="Coding"
-              className="h-auto w-full rounded-xl object-scale-down grayscale opacity-70 transition duration-200 ease-out group-hover:grayscale-0 group-hover:opacity-100"
+              className="h-[280px] w-[340px] max-w-full rounded-xl object-cover grayscale opacity-70 transition duration-200 ease-out group-hover:grayscale-0 group-hover:opacity-100 lg:h-[320px] lg:w-[390px] xl:h-[500px] xl:w-[530px]"
             />
           </div>
         </div>
@@ -146,8 +149,8 @@ function App() {
         style={{ backgroundColor: '#000000' }}
       >
         <div className="mx-auto w-full max-w-[1760px] space-y-6">
-          <p className="mt-3 text-xs font-sans uppercase tracking-[0.4em] text-zinc-500 sm:text-sm">Architecture</p>
-          <h2 className="mb-10 text-3xl font-bold leading-none tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
+          <p className="ml-8 text-xs font-sans uppercase tracking-[0.4em] text-zinc-500 sm:text-sm">Architecture</p>
+          <h2 className="mb-12 mt-3 ml-6 text-3xl font-bold leading-none tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
             Core Functionalities
           </h2>
           <div className="grid w-336 grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-9 ml-[32px]">
@@ -199,10 +202,10 @@ function App() {
         id="about-us"
         className="relative min-h-screen w-full px-4 pb-16 pt-24 sm:px-6 md:px-10 lg:px-16" style={{ backgroundColor: '#191a1a' }}>
         <div className="mx-auto w-full max-w-[1460px]">
-          <p className="text-xs font-sans uppercase tracking-[0.4em] text-zinc-400/80 sm:text-sm">
+          <p className="ml-7 text-xs font-sans uppercase tracking-[0.4em] text-zinc-400/80 sm:text-sm">
             Foundation
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-200 sm:text-4xl md:text-5xl">
+          <h2 className="mt-3 ml-5 text-3xl font-bold tracking-tight text-zinc-200 sm:text-4xl md:text-5xl">
             About Us
           </h2>
 
@@ -307,7 +310,7 @@ function App() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-3 bg-white text-black rounded-full hover:bg-zinc-300 transition duration-300 animate-in fade-in slide-in-from-bottom-4"
+          className="fixed bottom-8 right-8 z-40 p-3 bg-white !text-black rounded-full hover:bg-zinc-300 transition duration-300 animate-in fade-in slide-in-from-bottom-4"
           aria-label="Scroll to top"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
